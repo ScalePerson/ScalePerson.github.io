@@ -1,11 +1,292 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>AttackBenchmark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">
+
+    <meta property="og:site_name" content="ScalePerson" />
+    <meta property="og:title" content="ScalePerson" />
+    <meta property="og:description" content="ScalePerson: Towards Good Practices in Evaluating Physical Adversarial Attacks on Person Detection." />
+    <meta property="og:url" content="https://scaleperson.github.io/" />
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script>
+    <script language="javascript" type="text/javascript" src="sketch.js"></script>
+    
 </head>
+
 <body>
-    <h1>Hello World</h1>
+    <div class="container banner-container">
+        <div style="padding: 50px 0 0 0;">
+            <h1 class="text-center"><b>ScalePerson:</b> Towards Good Practices in Evaluating Physical Adversarial Attacks on Person Detection</h1>
+            <br>
+            <div class="text-center">
+                <!-- <img src="assets/fig_radar.svg" alt="Machiavelli" width="50%"/>-->
+            </div>
+            <br>
+            <div class="buttons" style="margin-bottom: 8px; text-align: center;">
+                <a class="btn btn-primary" role="button" href="https://scaleperson.github.io/">
+                    <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z"></path>
+                    </svg>Dataset
+                </a>
+                <a class="btn btn-primary" role="button" href="https://scaleperson.github.io/">
+                    <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" width="24px" height="24px" class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+                        <path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                    </svg>Code
+                </a>
+                <!--
+                <a class="btn btn-primary" role="button" href="#" target=”_blank”>
+                    <svg class="svg-inline--fa fa-images fa-w-18" aria-hidden="true" focusable="false" data-prefix="far" data-icon="images" role="img" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M480 416v16c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V176c0-26.51 21.49-48 48-48h16v48H54a6 6 0 0 0-6 6v244a6 6 0 0 0 6 6h372a6 6 0 0 0 6-6v-10h48zm42-336H150a6 6 0 0 0-6 6v244a6 6 0 0 0 6 6h372a6 6 0 0 0 6-6V86a6 6 0 0 0-6-6zm6-48c26.51 0 48 21.49 48 48v256c0 26.51-21.49 48-48 48H144c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h384zM264 144c0 22.091-17.909 40-40 40s-40-17.909-40-40 17.909-40 40-40 40 17.909 40 40zm-72 96l39.515-39.515c4.686-4.686 12.284-4.686 16.971 0L288 240l103.515-103.515c4.686-4.686 12.284-4.686 16.971 0L480 208v80H192v-48z"></path></svg>            
+                    Slides
+                </a>
+                <a class="btn btn-primary" role="button" href="#" target=”_blank”>
+                    <svg class="svg-inline--fa fa-youtube fa-w-18" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg>
+                    Video
+                </a>
+                -->
+                <!-- <div>
+                    <a class="btn is-dark" role="button" href="#cifar-benchmark-section"”>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true" focusable="false" data-prefix="fab" fill="currentColor" class="bi bi-table" viewBox="0 0 24 24" style="width:24px;height:24px;margin-left:-12px;margin-right:12px" data-fa-i2svg="">
+                            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z"></path>
+                        </svg>
+                        Leaderbord CIFAR-10
+                    </a>
+                    <a class="btn is-dark" role="button" href="#imagenet-benchmark-section">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true" focusable="false" data-prefix="fab" fill="currentColor" class="bi bi-table" viewBox="0 0 24 24" style="width:24px;height:24px;margin-left:-12px;margin-right:12px" data-fa-i2svg="">
+                            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z"></path>
+                        </svg>
+                        Leaderbord ImageNet
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="outer-container">
+    <div class="container-xl main-container">
+        <!--
+        <div class="row">
+            <div class="col-md-12" style="text-align: center">
+                <p class="stat">Abstract</p>
+                <p>
+        Adversarial examples are typically optimized with gradient-based attacks. While novel attacks are continuously proposed, each is shown to outperform its predecessors using different experimental setups, hyperparameter settings, and number of forward and backward calls to the target models. This provides overly-optimistic and even biased evaluations that may unfairly favor one particular attack over the others. 
+        In this work, we aim to overcome these limitations by proposing AttackBench, i.e.,  the first evaluation framework that enables a fair comparison among different attacks. To this end, we first propose a categorization of gradient-based attacks, identifying their main components and differences.
+        We then introduce our framework, which evaluates their effectiveness and efficiency. We measure these characteristics by (i) defining an <code>optimality</code> metric that quantifies how close an attack is to the optimal solution, and (ii) limiting the number of forward and backward queries to the model, such that all attacks are compared within a given maximum query budget.
+        Our extensive experimental analysis compares more than <b>100</b> attack implementations with a total of over <b>800</b> different configurations against CIFAR-10 and ImageNet models, highlighting that only very few attacks outperform all the competing approaches.
+        Within this analysis, we shed light on several implementation issues that prevent many attacks from finding better solutions or running at all. We release <code>AttackBench</code> as a publicly-available benchmark, aiming to continuously update it to include and evaluate novel gradient-based attacks for optimizing adversarial examples.
+                </p>
+                </div>
+        </div>
+        <br>
+        -->
+        <!-- SECTION ---------------------------------------------------------------------- -->
+
+
+        <h1>Abstract</h1>
+        Person detection is frequently employed in safety-critical tasks but is known to be susceptible to physical adversarial attacks. 
+        Many pioneering attack methods are being proposed, claiming superior attack performance and uncovering potential security risks. 
+        However, the actual progress in this field is difficult to assess due to two common limitations in existing evaluations. 
+        First, current methods fail to account for the scale of the person, a crucial factor that impacts attack effectiveness, in the datasets they employ. 
+        Second, inconsistent experimental setups and non-transparent implementation of evaluation metrics hinder fair comparisons.
+        In this work, we address these limitations by building a comprehensive benchmark and introducing <code>ScalePerson</code>, the first person dataset specifically designed to evaluate physical adversarial attacks, featuring a uniformly distributed person scale. 
+        The benchmark includes unified evaluation metrics and a modular-based codebase to promote transparency and reproducibility. Based on these efforts, we provide extensive evaluations of 10 state-of-the-art attacks against 7 mainstream detectors across 3 datasets, totaling 210 evaluations. 
+        Detailed analyses from various perspectives on these evaluations are presented, examining the impact of different factors on physical adversarial attacks in person detection. 
+        
+        <hr class="divider" />
+
+        <h1>Contributions</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <!-- The <code>AttackBench</code> framework wants to fairly compare gradient-based attacks based on their security evaluation curves. To this end, we derive a process involving five distinct stages, as depicted below. -->
+                    Our contributions can be summarized as follows:
+                    <ul>
+                    <li>
+                        <b>Dataset:</b> We propose <code>ScalePerson</code>, the first dataset specifically designed to evaluate physical adversarial attacks against person detection. 
+                        This dataset captures images of persons at various distances across diverse real-world scenarios, addressing the issue of uneven person scale distribution in existing datasets and aiming to measure attack performance across different person scales quantitatively. 
+                    </li>
+                    <li>
+                        <b>Benchmark:</b> We build a benchmark for physical adversarial attacks against person detection, conducting evaluations across all combinations of 10 attack methods and 7 mainstream detectors on 3 person datasets under varied evaluation settings, encompassing 210 evaluations. 
+                        The modular-based codebase designs a unified evaluation protocol aimed at improving the transparency and reproducibility of attack effectiveness assessments.
+                    </li>
+                    <li>
+                        <b>Analysis:</b> We provide quantitative analysis from various dimensions, uncovering the deficiencies of current methods and offering new insights to inspire new technologies.
+                    </li>
+                </ul>
+                </p>
+            </div>
+        </div>
+        <!-- <div class="row captioned_img">
+            <div class="col-md-12">
+                <br>
+                <img src="assets/AtkBench.svg" alt="AttackBench" width="100%"/>
+                <div class="caption">A comprehensive overview of the five stages of <code>AttackBench</code>. Each attack is tested in fair conditions, and then it is ranked through the optimality metric. The best attack is the one that produces the higher numbers of minimally-perturbed adversarial examples with fewer queries and less time.</div>
+            </div>
+        </div> -->
+        <hr class="divider" />
+
+        <!-- SECTION ---------------------------------------------------------------------- -->
+        <h1>Experimental coverage</h1>
+
+        <div class="row" style="text-align: center;">
+            <div class="col-md-3">
+                <p class="stat">3</p>
+                <p class="statlabel">Datasets</p>
+            </div>
+            <div class="col-md-3">
+                <p class="stat">7</p>
+                <p class="statlabel">Detectors</p>
+            </div>
+            <!-- <div class="col-md-4">
+                <p class="stat">10</p>
+                <p class="statlabel">Attacks</p>
+            </div> -->
+            <div class="col-md-3">
+                <p class="stat">10</p>
+                <p class="statlabel">Attacks</p>
+            </div>
+            <div class="col-md-3">
+                <p class="stat">210</p>
+                <p class="statlabel">Comparisons</p>
+            </div>
+        </div>
+        <!-- <div class="row" style="text-align: center;">
+            <div class="col-md-4">
+                <p class="stat">20</p>
+                <p class="statlabel">Distinct Attacks</p>
+            </div>
+            <div class="col-md-4">
+                <p class="stat">102</p>
+                <p class="statlabel">Implementations</p>
+            </div>
+            <div class="col-md-4">
+                <p class="stat">10</p>
+                <p class="statlabel">Attacks</p>
+            </div>
+            <div class="col-md-4">
+                <p class="stat">210</p>
+                <p class="statlabel">Comparisons</p>
+            </div>
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-12">
+                <p>
+                    We perform an extensive experimental analysis that compares 20 attacks (listed below), retrieving their original implementation and collecting the other implementations available among popular adversarial attack libraries. 
+                    We empirically test a total of 102 techniques, re-evaluating them in terms of their runtime, success rate and perturbation distance, as well as with our newly introduced <code>optimality</code> metrics.
+                    While implementing <code>AttackBench</code>, we collected additional insights, including sub-optimal implementations, attacks returning incorrect results, and errors in the source code that prevent attacks from concluding their runs correctly. 
+                    These additional insights could lead to a complete re-evaluation of the State of the Art, as incorrect evaluations might have impacted and inflated results in published work.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="attacks-table"></div>
+        </div> -->
+        
+
+        <!-- <div class="row">
+            <h1><a id="cifar-benchmark-section">AttackBench CIFAR-10</a></h1>
+
+            <div class="col-md-12" id="cifar-benchmark-table"></div>
+        </div> -->
+        
+        <hr class="divider" />
+        
+       <!-- <div class="row">
+            <h1><a id="imagenet-benchmark-section">AttackBench ImageNet</h1>
+
+            <div class="col-md-12" id="imagenet-benchmark-table"></div>
+        </div> -->
+
+        <!-- <hr class="divider" /> -->
+        
+        <h1>Authors</h1>
+        <br>
+        <div class="row authors">
+            <div class="col-sm-3">
+                <h5 class="text-center"><a class="text-center" href="https://weihui1308.github.io/">Hui Wei</a></h5>
+                <div class="text-center">Wuhan University, China</div>
+            </div>
+            <div class="col-sm-3">
+                <h5 class="text-center"><a class="text-center" href="https://scaleperson.github.io/">Yuanwei Liu</a></h5>
+                <div class="text-center">Wuhan University, China</div>
+            </div>
+            <div class="col-sm-3">
+                <h5 class="text-center"><a class="text-center" href="https://scaleperson.github.io/">Xuemei Jia</a></h5>
+                <div class="text-center">Wuhan University, China</div>
+            </div>
+            <div class="col-sm-3">
+                <h5 class="text-center"><a class="text-center" href="https://scaleperson.github.io/">Baraa Al-Hassani</a></h5>
+                <div class="text-center">Wuhan University, China</div>
+            </div>
+        </div>
+        
+        <div class="row authors">
+            <div class="col-sm-4">
+                <h5 class="text-center"><a class="text-center" href="https://scaleperson.github.io/">Manhuen Zhang</a></h5>
+                <div class="text-center">Wuhan University, China</div>
+            </div>
+            <div class="col-sm-4">
+                <h5 class="text-center"><a class="text-center" href="https://joeyzhouty.github.io/">Joey Tianyi Zhou</a></h5>
+                <div class="text-center">A*STAR Centre for Frontier AI Research (CFAR), Singapore</div>
+            </div>
+            <div class="col-sm-4">
+                <h5 class="text-center"><a href="https://wangzwhu.github.io/home/">Zheng Wang</a></h5>
+                <div class="text-center">Wuhan University, China</div>
+            </div>
+            <!-- <div class="col-sm-12 text-center">
+                <p>* Equal contribution</p>
+            </div> -->
+        </div>
+        <hr class="divider" />
+        <!-- SECTION ---------------------------------------------------------------------- -->
+        <!-- <h1>Citation</h1>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <code>
+                    @article{CinaRony2024AttackBench,<br>
+                    &nbsp; author = {Antonio Emanuele Cinà, Jérôme Rony, Maura Pintor, Luca Demetrio, Ambra Demontis, Battista Biggio, Ismail Ben Ayed, Fabio Roli },<br>
+                    &nbsp; title = {AttackBench: Evaluating Gradient-based Attacks for Adversarial Examples},<br>
+                    &nbsp; journal = {ArXiv},<br>
+                    &nbsp; year = {2024},<br>
+                    &nbsp; eprint = {2404.19460},<br>
+                }</code>
+            </div>
+        </div> -->
+        <!-- SECTION ---------------------------------------------------------------------- -->
+    </div>
+    </div>
+    <footer class="footer">
+        <div class="container container-xl main-container">
+            <div>
+                This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>. 
+            </div>
+            <div>Parts of this project page were adopted from the <a href="https://attackbench.github.io/">AttackBench</a> page.</div>
+        </div>
+      </footer>
+    <!--<script src="/assets/js/scripts.js"></script>-->+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+      </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
+      <script> 
+        $(function(){
+            $("#attacks-table").load("html/attacks.html"); 
+            $("#cifar-benchmark-table").load("html/cifar-benchmark.html"); 
+            $("#imagenet-benchmark-table").load("html/imagenet-benchmark.html"); 
+        });
+        </script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Import the component -->
 </body>
+
 </html>
