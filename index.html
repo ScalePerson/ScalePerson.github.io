@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>AttackBenchmark</title>
+    <title>ScalePerson</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="style.css">
@@ -30,9 +30,15 @@
             </div>
             <br>
             <div class="buttons" style="margin-bottom: 8px; text-align: center;">
-                <a class="btn btn-primary" role="button" href="https://scaleperson.github.io/">
+                <a class="btn btn-light" role="button">
                     <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
+                        <!-- <polygon stroke="#000000" points="50,50 150,50 150,250 50,250"></polygon> -->
                         <path fill="currentColor" d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z"></path>
+                    </svg>Paper (coming soon)
+                </a>
+                <a class="btn btn-primary" role="button"  href="#target">
+                    <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 2C7.589 2 4 3.791 4 6v12c0 2.209 3.589 4 8 4s8-1.791 8-4V6c0-2.209-3.589-4-8-4zm0 2c3.866 0 7 1.343 7 3s-3.134 3-7 3-7-1.343-7-3 3.134-3 7-3zm7 5.82V10c0 1.657-3.134 3-7 3s-7-1.343-7-3v-.18C6.325 10.208 8.982 11 12 11s5.675-.792 7-1.18zm0 4V14c0 1.657-3.134 3-7 3s-7-1.343-7-3v-.18C6.325 15.208 8.982 16 12 16s5.675-.792 7-1.18zm-7 6c-3.866 0-7-1.343-7-3v-1.18C6.325 20.208 8.982 21 12 21s5.675-.792 7-1.18V18c0 1.657-3.134 3-7 3z"></path>
                     </svg>Dataset
                 </a>
                 <a class="btn btn-primary" role="button" href="https://scaleperson.github.io/">
@@ -69,25 +75,20 @@
     </div>
     <div class="outer-container">
     <div class="container-xl main-container">
-        <!--
-        <div class="row">
-            <div class="col-md-12" style="text-align: center">
-                <p class="stat">Abstract</p>
-                <p>
-        Adversarial examples are typically optimized with gradient-based attacks. While novel attacks are continuously proposed, each is shown to outperform its predecessors using different experimental setups, hyperparameter settings, and number of forward and backward calls to the target models. This provides overly-optimistic and even biased evaluations that may unfairly favor one particular attack over the others. 
-        In this work, we aim to overcome these limitations by proposing AttackBench, i.e.,  the first evaluation framework that enables a fair comparison among different attacks. To this end, we first propose a categorization of gradient-based attacks, identifying their main components and differences.
-        We then introduce our framework, which evaluates their effectiveness and efficiency. We measure these characteristics by (i) defining an <code>optimality</code> metric that quantifies how close an attack is to the optimal solution, and (ii) limiting the number of forward and backward queries to the model, such that all attacks are compared within a given maximum query budget.
-        Our extensive experimental analysis compares more than <b>100</b> attack implementations with a total of over <b>800</b> different configurations against CIFAR-10 and ImageNet models, highlighting that only very few attacks outperform all the competing approaches.
-        Within this analysis, we shed light on several implementation issues that prevent many attacks from finding better solutions or running at all. We release <code>AttackBench</code> as a publicly-available benchmark, aiming to continuously update it to include and evaluate novel gradient-based attacks for optimizing adversarial examples.
-                </p>
-                </div>
-        </div>
-        <br>
-        -->
         <!-- SECTION ---------------------------------------------------------------------- -->
+        <div class="row captioned_img">
+            <div class="col-md-12">
+                <br>
+                <img src="assets/datasetDisplay.svg" alt="datasetDisplay" width="100%"/>
+                <div class="caption">The display of our <code>ScalePerson</code> dataset. Each image is captured from various real-world scenes, including campuses, streets, forests, and indoor settings. 
+                    We showcase samples across different dataset dimensions for each group of images, including person scale, orientation, number of persons, scene type, and imaging device. 
+                    Leveraging the <code>ScalePerson</code> dataset, we can evaluate physical adversarial attacks against person detection from diverse perspectives.</div>
+            </div>
+        </div>
+        <hr class="divider" />
 
 
-        <h1>Abstract</h1>
+        <h1  id="target">Abstract</h1>
         Person detection is frequently employed in safety-critical tasks but is known to be susceptible to physical adversarial attacks. 
         Many pioneering attack methods are being proposed, claiming superior attack performance and uncovering potential security risks. 
         However, the actual progress in this field is difficult to assess due to two common limitations in existing evaluations. 
@@ -121,14 +122,57 @@
                 </p>
             </div>
         </div>
-        <!-- <div class="row captioned_img">
-            <div class="col-md-12">
-                <br>
-                <img src="assets/AtkBench.svg" alt="AttackBench" width="100%"/>
-                <div class="caption">A comprehensive overview of the five stages of <code>AttackBench</code>. Each attack is tested in fair conditions, and then it is ranked through the optimality metric. The best attack is the one that produces the higher numbers of minimally-perturbed adversarial examples with fewer queries and less time.</div>
-            </div>
-        </div> -->
+
         <hr class="divider" />
+        
+        <!-- SECTION ---------------------------------------------------------------------- -->
+        <h1>Dataset description</h1>
+
+        <div class="row" style="text-align: center;">
+            <div class="col-md-3">
+                <p class="stat">3</p>
+                <p class="statlabel">Orientation</p>
+            </div>
+            <div class="col-md-3">
+                <p class="stat">5</p>
+                <p class="statlabel">Camera</p>
+            </div>
+            <!-- <div class="col-md-4">
+                <p class="stat">10</p>
+                <p class="statlabel">Attacks</p>
+            </div> -->
+            <div class="col-md-3">
+                <p class="stat">7</p>
+                <p class="statlabel">#Person</p>
+            </div>
+            <div class="col-md-3">
+                <p class="stat">2</p>
+                <p class="statlabel">Scene</p>
+            </div>
+        </div>
+
+        <div class="row" style="text-align: center;">
+            <div class="col-md-3">
+                <p class="stat">3,457</p>
+                <p class="statlabel">Images (train set)</p>
+            </div>
+            <div class="col-md-3">
+                <p class="stat">12,362</p>
+                <p class="statlabel">Annotations (train set)</p>
+            </div>
+            <!-- <div class="col-md-4">
+                <p class="stat">10</p>
+                <p class="statlabel">Attacks</p>
+            </div> -->
+            <div class="col-md-3">
+                <p class="stat">864</p>
+                <p class="statlabel">Images (val set)</p>
+            </div>
+            <div class="col-md-3">
+                <p class="stat">3,117</p>
+                <p class="statlabel">Annotations (val set)</p>
+            </div>
+        </div>
 
         <!-- SECTION ---------------------------------------------------------------------- -->
         <h1>Experimental coverage</h1>
@@ -195,6 +239,43 @@
             <div class="col-md-12" id="cifar-benchmark-table"></div>
         </div> -->
         
+        <hr class="divider" />
+
+        <h1>Dataset download</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <!-- The <code>AttackBench</code> framework wants to fairly compare gradient-based attacks based on their security evaluation curves. To this end, we derive a process involving five distinct stages, as depicted below. -->
+                    <ul>
+                    <li>
+                        <b>Google Drive:</b>
+                        <ul>
+                            <li>
+                                <a href="https://drive.google.com/file/d/1d98YsPT3a8jpnOBEG123GRFHlRogiDCv/view?usp=sharing">Training Set</a>
+                            </li>
+                            <li>
+                                <a href="https://drive.google.com/file/d/1am_zjTd53L47rPlvR4us43KV25gwN4F6/view?usp=sharing">Validation Set</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Baidu Netdisk:</b>
+                        <ul>
+                            <li>
+                                <a href="https://pan.baidu.com/s/1ZPFjExOgLM2x5Bv29Cta8w?pwd=7384">Training Set</a> (code: 7384)
+                            </li>
+                            <li>
+                                <a href="https://pan.baidu.com/s/1Mq-vz8k-yjTZ_j_X79JXGA?pwd=4hxm">Validation Set</a> (code: 4hxm)
+                            </li>
+                        </ul>
+                    </li>
+                </li>
+                </ul>
+                </p>
+                The dataset is licensed under the <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA) License</a>.
+            </div>
+        </div>
+
         <hr class="divider" />
         
        <!-- <div class="row">
